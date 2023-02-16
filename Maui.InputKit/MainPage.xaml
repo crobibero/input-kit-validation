@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui.InputKit.MainPage"
+             xmlns:inputKit="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
+             xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
+             xmlns:vm="clr-namespace:Maui.InputKit"
+             x:DataType="vm:MainPageViewModel">
+    <ContentPage.BindingContext>
+        <vm:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout>
+        <inputKit:FormView IsValidated="{Binding IsValid}" SubmitCommand="{Binding SubmitCommand}">
+
+            <inputKit:AdvancedEntry Title="Text" Text="{Binding Text}">
+                <inputKit:AdvancedEntry.Validations>
+                    <validation:RequiredValidation />
+                </inputKit:AdvancedEntry.Validations>
+            </inputKit:AdvancedEntry>
+
+            <Button Text="Submit"
+                    inputKit:FormView.IsSubmitButton="True"
+                    Command="{Binding SubmitCommand}"/>
+        </inputKit:FormView>
+
+        <Label Text="{Binding IsValidResult}"/>
+    </VerticalStackLayout>
+
+</ContentPage>
